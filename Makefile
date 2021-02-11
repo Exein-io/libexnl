@@ -1,5 +1,5 @@
-BRH=newmakefile
-VER=v0.6-17
+BRH=master
+VER=v0.7.0
 GITVER=NONE
 GITBRH=NONE
 # ----------- commands
