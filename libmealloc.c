@@ -15,7 +15,11 @@ limitations under the License.
 
 
 //#define DEBUGME
+#include <stdlib.h> //exit
+
 #include "include/libmealloc.h"
+
+static int mealloc_pow(int base, int exp);
 
 void *mealloc_init(uint32_t reserved, uint32_t generic_element_size, uint8_t color){
 	void *tmp;
@@ -143,7 +147,7 @@ void *gmealloc(gmeallocator *shm, int size){
 	printf("gmealloc failed on shm=0x%p,  size=%d [bloom_reserved=%d, table_reserved=%d, initial_bucket=%d]\n", shm, size, shm->bloom_reserved, shm->table_reserved, shm->initial_bucket);
 	return NULL;
 }
-static int pow(int base, int exp){
+static int mealloc_pow(int base, int exp){
 
 	if (exp==0) return 1;
 	int res=base;
@@ -153,5 +157,5 @@ static int pow(int base, int exp){
 void gmefree(gmeallocator *shm, void *addr){
 
 	if (shm->iteration>0) shm->iteration--;
-	memset(addr, 0, shm->initial_bucket * ( pow(2, (shm->iteration)) ) );
+	memset(addr, 0, shm->initial_bucket * ( mealloc_pow(2, (shm->iteration)) ) );
 }
