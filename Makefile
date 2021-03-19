@@ -65,7 +65,7 @@ $(ODIR)/%.o: %.c $(HDR) $(ODIR) Makefile
 	$(CC) $(DEBUGSYM) $(CFLAGS) -fPIC -c -DVERSION_STRING='"$(VERSION_STRING)"' -o $@ $<
 
 $(SHAREDLIB): $(LDIR) $(OBJ)
-	$(CC) -shared $(CFLAGS) $(OBJ) -o $@
+	$(CC) -shared $(CFLAGS) $(OBJ) -o $@ -lpthread
 	@echo "just built $(VERSION_STRING)"
 
 $(STATICLIB): $(LDIR) $(OBJ)
