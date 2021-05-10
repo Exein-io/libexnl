@@ -20,11 +20,12 @@ limitations under the License.
 //#define DEBUG
 #define uthash_malloc(sz) gmealloc(uhandle->uthash_shm,sz)
 #define uthash_free(ptr,sz) gmefree(uhandle->uthash_shm, ptr);
-#define uthash_fatal(msg) printf("---------------------- [%d] %s ----------------------\n",msg,getpid());exit(-1);
+#define uthash_fatal(msg) printf("---------------------- [%d] %s ----------------------\n",getpid(),msg);exit(-1);
 
 
 #include "include/libexnl.h"
 #include <time.h>
+#include <execinfo.h>
 
 
 static char version[] = VERSION_STRING;
